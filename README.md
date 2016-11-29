@@ -257,7 +257,7 @@ describe('Unit: FrostWhateverMixin', function () {
 
 ## Requesting Changes (RFCS)
 Updates to the tools and/or conventions used in ember-frost-test can be submitted for discussion
-via the [RFC process](http://github.com/ciena-frost/ember-frost-test/rfcs/README.md)
+via the [RFC process](https://github.com/ciena-frost/ember-frost-test/blob/master/rfcs/README.md)
 
 ## Development
 
