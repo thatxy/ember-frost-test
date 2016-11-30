@@ -32,15 +32,15 @@ addons:
   apt:
     sources:
     - ubuntu-toolchain-r-test
+    - google-chrome
     packages:
-    - g++-4.
-  firefox: "latest-esr"
+    - google-chrome-stable
+    - g++-4.8
 env:
-  env:
   matrix:
-    - EMBER_TRY_SCENARIO=ember-2-3
-    - EMBER_TRY_SCENARIO=default
-    - EMBER_TRY_SCENARIO=ember-release
+  - EMBER_TRY_SCENARIO=ember-2-3
+  - EMBER_TRY_SCENARIO=default
+  - EMBER_TRY_SCENARIO=ember-release
   global:
     - CXX=g++-4.8
     - secure: cPXj+ImjbOqnD/mCc/3wDtdE+VvYsE533pRRSOnzOUgjV4rNoHXOBxcxR4UGIY0QhFBuLK4gLIxtLfMcWa9TWtAz66XG4jAYkHlte5vUuSmG+UpO0yb3yqRbH3y/sRYG6h3Tx+hDMZmR7HGRSVwLPjVVnNyUtNd7dPHGJt4EizjmM6RGieVlRZ5E6LWZJTynze6mAusEzbErf3rJfZUfRo6++B/5jWXdZS31/7fpbf8pdr/awdtRp6ZQnfesIu1uCSiKheifD7hUqxxE3iBaDGfl9w6d9IrwZGoEkXars6nLJBH9UBqo0Ol2noATAFXpYWm3tf7H9AVdadqHp5lRRb1FTJhiIWsnULmNjRFBYqzF3Hyzi86cziRjQH1Y4S5HlYAiQn2UMOsuOciGPpwxeWII4riYqx+amhuGUarSW1bVtBUi1k2+lbBVhXPf6Z7gu2HZqnQGLnJEozGVGo89wYwz1mTnGUfpU6NSsHvzzV8sPurMzLpvvf30P5HxpCN6UEHiKijaf9VAdqZ4k+hLx3BaVvDl4OIEJUCFrTjt5Ku4XhJl+ur4z1eGN0XaxPFjwsCOLl8XhSdRtlxeslb3kVCbWwvhYZnVE16feTnm88lJhE4wboVm5+kgkziS95oxB+KxLWYecDc1J/TWU1SUtFRoiVLjYEpncfKcc05d8FM=
