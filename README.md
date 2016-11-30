@@ -1,6 +1,6 @@
 # ember-frost-test
 
-This repo servers as the home for tools and conventions used in testing the frost ecosystem.
+This repo serves as the home for tools and conventions used in testing the frost ecosystem.
 
 ## Installation
 
@@ -11,9 +11,9 @@ ember install ember-frost-test
 ## Testing Tools
 We are using the following tools:
 
-* [ember-cli-mocha](https://github.com/ember-cli/ember-cli-mocha) - This is our testing framework. It also includes ,chaijs our assertion library.
+* [ember-cli-mocha](https://github.com/ember-cli/ember-cli-mocha) - This is our testing framework. It also includes, chaijs our assertion library.
 * [ember-hook](https://github.com/Ticketfly/ember-hook) - This is a tool we use to create a separation between the DOM and our items under test.
-* [ember-sinon](https://github.com/csantero/ember-sinon) - This is our method spying/stubbing tool.
+* [ember-sinon](https://github.com/csantero/ember-sinon) - This is our method spying/stubbing/mocking tool.
 * [ember-test-utils](https://github.com/ciena-blueplanet/ember-test-utils) - These are our test helpers that can be used to help test frost components.
 
 ## Testing Conventions
@@ -23,6 +23,7 @@ We are using the following tools:
 #### Acceptance tests are used to test user interaction and application flow
 
 Some examples of what we would use an acceptance test for are:
+
 Validating routes
 
 ```javascript
@@ -39,7 +40,7 @@ Interacting with components/elements on a page to validate a behavior results in
 
 ```javascript
 it('can create a user', function () {
-  visit(/users)
+  visit('/users')
 
   click(hook('createUserButton'))
 
