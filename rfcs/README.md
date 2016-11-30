@@ -64,17 +64,17 @@ to revise it in response.
 * Build consensus and integrate feedback. RFCs that have broad support
 are much more likely to make progress than those that don't receive any
 comments.
-* Eventually, the [insert team] will decide whether the RFC is a candidate
+* Eventually, the [reviewer team] will decide whether the RFC is a candidate
 for inclusion in ember-frost-test.
 * RFCs that are candidates for inclusion in ember-frost-test will enter a "final comment
 period" lasting 7 days. The beginning of this period will be signaled with a
 comment and tag on the RFC's pull request.
-* An RFC can be modified based upon feedback from the [insert team] and community.
+* An RFC can be modified based upon feedback from the [reviewer team] and community.
 Significant modifications may trigger a new final comment period.
-* An RFC may be rejected by the [insert team] after public discussion has settled
+* An RFC may be rejected by the [reviewer team] after public discussion has settled
 and comments have been made summarizing the rationale for rejection. A member of
-the [insert team] should then close the RFC's associated pull request.
-* An RFC may be accepted at the close of its final comment period. A [insert team]
+the [reviewer team] should then close the RFC's associated pull request.
+* An RFC may be accepted at the close of its final comment period. A [reviewer team]
 member will merge the RFC's associated pull request, at which point the RFC will
 become 'active'.
 
@@ -83,7 +83,7 @@ become 'active'.
 Once an RFC becomes active then authors may implement it and submit the
 feature as a pull request to the ember-frost-test repo. Becoming 'active' is not a rubber
 stamp, and in particular still does not mean the feature will ultimately
-be merged; it does mean that the [insert team] has agreed to it in principle
+be merged; it does mean that the [reviewer team] has agreed to it in principle
 and are amenable to merging it.
 
 Furthermore, the fact that a given RFC has been accepted and is
