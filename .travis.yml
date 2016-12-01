@@ -25,7 +25,8 @@ before_script:
 - sudo dpkg -i google-chrome*.deb
 script:
 - npm run lint
-- ember try:one $EMBER_TRY_SCENARIO --- ember test
+# no tests to run yet
+# - ember try:one $EMBER_TRY_SCENARIO --- ember test
 after_success:
 - .travis/publish-coverage.sh
 addons:
