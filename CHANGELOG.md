@@ -1,3 +1,7 @@
+# 0.0.3
+* **Updated** cleaned up CHANGELOG.md
+
+
 # 0.0.2
 * **Added** badges to README
 
