@@ -2,6 +2,8 @@
 
 This repo serves as the home for tools and conventions used in testing the frost ecosystem.
 
+[![Travis][ci-img]][ci-url] [![NPM][npm-img]][npm-url]
+
 ## Installation
 
 ```bash
@@ -286,3 +288,8 @@ npm install && bower install
 * `ember build`
 
 For more information on using ember-cli, visit [http://ember-cli.com/](http://ember-cli.com/).
+
+[ci-img]: https://img.shields.io/travis/ciena-frost/ember-frost-test.svg "Travis CI Build Status"
+[ci-url]: https://travis-ci.org/ciena-frost/ember-frost-test
+[npm-img]: https://img.shields.io/npm/v/ember-frost-test.svg "NPM Version"
+[npm-url]: https://www.npmjs.com/package/ember-frost-test
