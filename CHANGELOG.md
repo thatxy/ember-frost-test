@@ -1,3 +1,7 @@
+# 0.1.0
+* **Added** component-test blueprint generator
+
+
 # 0.0.3
 * **Updated** cleaned up CHANGELOG.md
 
