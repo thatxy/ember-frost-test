@@ -1,3 +1,5 @@
+blueprints/component/files/**/*
+blueprints/component-test/files/**/*
 bower_components/**/*
 dist/**/*
 node_modules/**/*
