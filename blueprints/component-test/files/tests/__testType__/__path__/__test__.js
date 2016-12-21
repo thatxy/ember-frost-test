@@ -3,22 +3,23 @@
  */
 
 import {expect} from 'chai'
-import {describeComponent, it} from 'ember-mocha'
 <% if (testType === 'integration' ) { %>import hbs from 'htmlbars-inline-precompile'
-import {$hook, initialize as initializeHook} from 'ember-hook'
+import {$hook} from 'ember-hook'
 import wait from 'ember-test-helpers/wait'
-import {afterEach, beforeEach, describe} from 'mocha'<% } else { %>
-import {afterEach, beforeEach, describe} from 'mocha'<% } %>
+import {afterEach, beforeEach, describe, it} from 'mocha'<% } else { %>
+import {afterEach, beforeEach, describe, it} from 'mocha'<% } %>
 import sinon from 'sinon'
 
-import {<%= testType %>} from '<%= dasherizedPackageName %>/tests/helpers/ember-test-utils/describe-component'
+import {<%= testType %>} from '<%= testHelpersPath %>/ember-test-utils/setup-component-test'
 
-describeComponent(...<%= testType %>('<%= dasherizedModuleName %>'), function () {
+const test = <%= testType %>('<%= dasherizedModuleName %>')
+describe(test.label, function () {
+  test.setup()
+
   <% if (testType === 'unit' ) { %>let component, sandbox<% } else { %>let sandbox<% } %>
 
   beforeEach(function () {
-    <% if (testType === 'integration') { %>sandbox = sinon.sandbox.create()
-    initializeHook()<% } else { %>sandbox = sinon.sandbox.create()<% } %>
+    sandbox = sinon.sandbox.create()
   })
 
   afterEach(function () {
