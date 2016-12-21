@@ -1,4 +1,5 @@
 module.exports = {
+  'debug': true,
   'framework': 'mocha',
   'test_page': 'tests/index.html?hidepassed',
   'disable_watching': true,
@@ -6,7 +7,6 @@ module.exports = {
     'Chrome'
   ],
   'launch_in_dev': [
-    'Firefox',
     'Chrome'
   ]
 }

@@ -13,12 +13,103 @@ ember install ember-frost-test
 ## Testing Tools
 We are using the following tools:
 
-* [ember-cli-mocha](https://github.com/ember-cli/ember-cli-mocha) - This is our testing framework. It also includes, chaijs our assertion library.
-* [ember-hook](https://github.com/Ticketfly/ember-hook) - This is a tool we use to create a separation between the DOM and our items under test.
+* [ember-cli-mocha](https://github.com/ember-cli/ember-cli-mocha) - This is our testing framework.
+It also includes, chaijs our assertion library.
+* [ember-hook](https://github.com/Ticketfly/ember-hook) - This is a tool we use to create a separation between the
+DOM and our items under test.
 * [ember-sinon](https://github.com/csantero/ember-sinon) - This is our method spying/stubbing/mocking tool.
-* [ember-test-utils](https://github.com/ciena-blueplanet/ember-test-utils) - These are our test helpers that can be used to help test frost components.
+* [ember-test-utils](https://github.com/ciena-blueplanet/ember-test-utils) - These are our test helpers that can be
+used to help test frost components.
 
 ## Testing Conventions
+
+### Organizing your tests
+
+For any unfamiliar with the BDD style `describe`/`beforeEach`/`it`, here's an overview of how one should
+organize a test module.
+
+#### Top level `describe`
+Each module should contain a single top-level `describe` which explains what it is that's being tested. We have
+test helpers to streamline formatting the message for this top-level `describe` label, but the current format is:
+
+```
+<testType> / <moduleType> / <nameOfModule> /
+```
+
+ * `testType` - `Unit`, `Integration` or  `Acceptance`
+ * `moduleType` - `Component`, `Route`, `Controller`, etc.
+ * `nameOfModule` - `frost-text`, `things`, etc.
+
+We use `/` as a delimiter instead of '|' because when using `?grep=` to scope your tests in the URL, `|` is treated
+like an `or` operator. We include a trailing `/` so that when clicking on the test for `frost-select` you don't
+also get a test for `frost-select-outlet`.
+
+#### Top level `beforeEach`/`afterEach`
+The top-level `beforeEach` can be used to setup anything that will be needed for every use-case being tested, for
+example, creating the `sinon` sandbox or creating an instance of the thing under test. The `afterEach` should be
+used to clean up things that need cleaning after each `it`, like restoring all the stubs/spies in the sandbox.
+
+#### Nested `describe` blocks
+Additional `describe` blocks nested within the top-level `describe` serve one of two purposes, defining/declaring a
+scope, or defining a use-case.
+
+##### Defining/declaring a scope
+A `describe` that is just grouping a set of other `describe` blocks because they are similar, generally won't need
+a `beforeEach` because there's nothing to set up.
+
+```javascript
+describe('Computed Properties', function () {
+ describe('foo', function () {
+    // actual tests for foo
+ })
+
+ describe('bar', function () {
+   // actual tests for bar
+ })
+})
+```
+
+##### Defining a use-case   
+The second, more common use of a nested `describe` is to describe/define a specific use-case, a state of the system or
+an action being performed. The label for these `describe` blocks will often start with "when".
+These types of `describe` blocks should always include a `beforeEach` which actually sets up the described state of
+the system or performs the described action.
+
+```javascript
+describe('when the "text" property is set', function () {
+  beforeEach(function () {
+    component.set('text', 'foo bar baz')
+  })
+
+  // expect something
+})
+
+describe('when the button is clicked', function () {
+  beforeEach(function () {
+    this.$('button').click()
+  })
+
+  // expect something
+})
+```
+
+#### `it() blocks`
+The `it()` blocks are used to describe an expected outcome. They generally start with "should", this is so it reads
+like English, "it should ..."
+
+```javascript
+it('should add the "foo-bar" class to the input element', function () {
+  expect(this.$('input')).to.have.class('foo-bar')
+})
+```
+
+You want to explain, in human-readable text, exactly what it is that's supposed to be happening, so that when the test
+fails, a developer knows exactly what isn't working anymore.
+
+As a rule-of-thumb, you should never be "doing something" in an `it()` the `it()` is for verifying the state of the
+system. If you need to "do something" else before verifying, use a nested `describe` to describe what it is that
+you are doing, and a `beforeEach` within that `describe` to actually do it.
+
 
 ### The role of acceptance/integration/unit tests
 
@@ -32,7 +123,7 @@ Validating routes
 it('can visit /routeName', function (done) {
   visit('/routeName')
 
-  andThen(function () {
+  return andThen(function () {
     expect(currentPath()).to.equal('routeName.index')
   })
 })
@@ -46,7 +137,7 @@ it('can create a user', function () {
 
   click(hook('createUserButton'))
 
-  andThen(function () {
+  return andThen(function () {
     expect(hook('userRecord').length).to.equal(1)
   })
 })
@@ -57,36 +148,45 @@ it('can create a user', function () {
 DOM structure altered via interaction with component:
 
 ```javascript
-it('sets disabled property', function () {
-  this.render(hbs`
-    {{frost-password
-      disabled=true
-    }}
- `)
+describe('when disabled property is set', function () {
+  beforeEach(function () {
+    this.render(hbs`
+      {{frost-password
+        disabled=true
+      }}
+    `)
+  })
 
-  expect(
-    this.$('.frost-password').find('input').prop('disabled')
-  ).to.eql(true)
+  it('should set the "disabled" prop on the inner <input> element', function () {
+    expect(this.$('.frost-password input')).to.have.prop('disabled', true)
+  })
 })
 ```
 
 Validate interacting with component fires closure action:
 
 ```javascript
-it('calls onClick closure action', function () {
-  const externalActionSpy = sandbox.spy()
+describe('when onClick property is set', function() {
+  let clickHandler
+  beforeEach(function() {
+    clickHandler = sinon.stub()
+    this.setProperties({clickHandler})
+    this.render(hbs`
+      {{frost-link 'title'
+        onClick=(action clickHandler)
+      }}
+    `)
+  })
 
-  this.on('externalAction', externalActionSpy)
+  describe('when the anchor tag is clicked', function() {
+    beforeEach(function() {
+      this.$('a').trigger('click')
+    })
 
-  this.render(hbs`
-    {{frost-link 'title'
-      onClick=(action 'externalAction')
-    }}
-  `)
-
-  this.$('a').trigger('click')
-
-  expect(externalActionSpy.called).to.eql(true)
+    it('should call the click handler', function() {
+      expect(clickHandler).to.have.callCount(1)
+    })
+  })
 })
 ```
 
@@ -111,22 +211,27 @@ isTextOnly (icon, text) {
 },
 
 describe('"isTextOnly" computed property', function () {
-  it('is set to "true" when "text" is set', function () {
-    run(() => component.set('text', 'testText'))
-
-    expect(
-      component.get('isTextOnly'),
-      'isTextOnly: true'
-    ).to.eql(true)
-  })
-
-  it('is set to "false" when "icon" and "text" are both set', function () {
-    run(() => {
-      component.set('icon', 'round-add')
+  describe('when only "text" is set', function () {
+    beforeEach(function() {
       component.set('text', 'testText')
     })
 
-    expect(component.get('isTextOnly')).to.eql(false)
+    it('should be true', function() {
+      expect(component.get('isTextOnly')).to.equal(true)
+    })
+  })
+
+  describe('when both "icon" and "text" are set', function () {
+    beforeEach(function() {
+      component.setProperties({
+        icon: 'round-add'
+        text: 'testText',
+      })
+    })
+
+    it('should be false', function() {
+      expect(component.get('isTextOnly')).to.equal(false)
+    })
   })
 })
 ```
@@ -135,26 +240,35 @@ Object Method:
 
 ```javascript
 checkSelectionValidity (selection) {
-    return typeOf(selection.onSelect) === 'function'
-  },
+  return typeOf(selection.onSelect) === 'function'
+},
 
 describe('checkSelectionValidity()', function () {
-  it('returns "true" when "selection" is set Properly', function () {
-    const selection = {
-      onSelect: function () {}
-    }
+  let selection, ret
+  describe('when selection is set properly', function () {
+    beforeEach(function() {
+      selection = {
+        onSelect() {}
+      }
 
-    expect(
-      component.checkSelectionValidity(selection)
-    ).to.eql(true)
+      ret = component.checkSelectionValidity(selection)
+    })
+
+    it('should be true', function () {
+      expect(ret).to.equal(true)
+    })
   })
 
-  it('returns "false" when "onSelect" function is missing in "selection"', function () {
-    const selection = {}
+  describe('when selection is missing "onSelect" function', function () {
+    beforeEach(function() {
+      selection = {}
 
-    expect(
-      component.checkSelectionValidity(selection),
-    ).to.eql(false)
+      ret = component.checkSelectionValidity(selection)
+    })
+
+    it('should be false', function () {
+      expect(ret).to.equal(false)
+    })
   })
 })
 ```
@@ -166,12 +280,21 @@ doSomething: Ember.observer('foo', function() {
   this.set('other', 'yes');
 })
 
-it('should set other prop to yes when foo changes', function() {
-  const someThing = this.subject()
+describe('someThing', function () {
+  let someThing
+  beforeEach(function () {
+    someThing = this.subject()
+  })
 
-  someThing.set('foo', 'baz')
+  describe('when foo changes', function () {
+    beforeEach(function() {
+      someThing.set('foo', 'baz')
+    })
 
-  expect(someThing.get('other'))to.eql('yes')
+    it('should set "other" to "yes"', function () {
+      expect(someThing.get('other')).to.equal('yes')
+    })
+  })
 })
 ```
 
@@ -193,9 +316,12 @@ expect(condition).to.be.null
 expect(condition).to.be.undefined
 ```
 
+This is because property based assertions [are dangerous](https://github.com/chaijs/chai/issues/726).
+
 ### Use sinon.sandbox() for spying, stubbing, mocking methods.
 
-Combined with beforeEach() and afterEach() we can easily create the sandbox before a test and clean it up afterwards.
+Combined with `beforeEach()` and `afterEach()` we can easily create the sandbox before a test
+and clean it up afterwards.
 
 In an integration test:
 
@@ -203,32 +329,32 @@ In an integration test:
 ...
 import sinon from 'sinon'
 
-describeComponent(
-  'frost-whatever',
-  'Integration: FrostWhateverComponent',
-  {
-    integration: true
-  },
-  function () {
-    let sandbox
+const test = integration('frost-whatever')
+describe(test.label, function () {
+  test.setup()
 
+  let sandbox
+
+  beforeEach(function () {
+    sandbox = sinon.sandbox.create()
+  })
+
+  afterEach(function () {
+    sandbox.restore()
+  })
+
+  describe('when x happens', function () {
     beforeEach(function () {
-      sandbox = sinon.sandbox.create()
+      sandbox.spy(object, 'methodName')
+
+      // do x
     })
 
-    afterEach(function () {
-      sandbox.restore()
+    it('should call methodName', function () {
+      expect(object.methodName).to.have.callCount(1)
     })
-
-    it('test title here', function () {
-        const testSpy = sandbox.spy(object, 'methodName')
-
-        //Test stuff here
-
-        expect(testSpy.called).to.eql(true)
-      })
-  }
-)
+  })
+})
 ```
 
 In a unit test:
@@ -237,23 +363,28 @@ In a unit test:
 ...
 import sinon from 'sinon'
 
-describe('Unit: FrostWhateverMixin', function () {
+describe('Unit / Mixin / FrostWhatever', function () {
   let sandbox, subject
 
   beforeEach(function () {
     sandbox = sinon.sandbox.create()
-    let testObject = Controller.extend(FrostWhateverMixin)
-    subject = testObject.create()
+    subject = Controller.extend(FrostWhateverMixin).create()
   })
 
   afterEach(function () {
     sandbox.restore()
   })
 
-  it('test title here', function () {
-    sandbox.stub(object, 'method').returns({ 1: true })
+  describe('when stuff happens', function () {
+    beforeEach(function () {
+      sandbox.stub(object, 'method').returns({1: true})
 
-    //Test stuff here
+      // do stuff
+    })
+
+    it('should do some other stuff', function () {
+      // expect some other stuff to have happened
+    })
   })
 })
 ```
@@ -261,8 +392,6 @@ describe('Unit: FrostWhateverMixin', function () {
 ## Requesting Changes (RFCS)
 Updates to the tools and/or conventions used in ember-frost-test can be submitted for discussion
 via the [RFC process](https://github.com/ciena-frost/ember-frost-test/blob/master/rfcs/README.md)
-
-## Development
 
 ### Setup
 
