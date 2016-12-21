@@ -13,12 +13,12 @@ module.exports = {
    */
   addLoadingOfTestHelpers: function () {
     const content =
-      '  if (app.env === \'test\') {' + EOL +
+      '  if ([\'test\', \'development\'].includes(app.env)) {' + EOL +
       '    ;[' + EOL +
       '      \'bower_components/sinon-chai/lib/sinon-chai.js\',' + EOL +
       '      \'bower_components/chai-jquery/chai-jquery.js\'' + EOL +
       '    ].forEach((path) => {' + EOL +
-      '      app.import(path, {type: \'test\'})' + EOL +
+      '      app.import(path)' + EOL +
       '    })' + EOL +
       '  }' + EOL
 
@@ -96,7 +96,7 @@ module.exports = {
         return this.addLoadingOfTestHelpers()
       })
       .then(() => {
-        this.ui.writeLine(chalk.green('Updateing') + ' "package.json" with "postinstall" script')
+        this.ui.writeLine(chalk.green('Updating') + ' "package.json" with "postinstall" script')
         return this.addPostInstallScript()
       })
   },
