@@ -1,3 +1,8 @@
+# 0.2.1
+
+ * **Removed** the `blueprint` hack to install a fork of `testem` and clear out the one under `node_modules/ember-cli/node_modules/testem` since [the fix has been released](https://github.com/testem/testem/releases/tag/v1.14.1)
+
+
 # 0.2.0
 
 * **Updated** the `README.md` with examples using the latest `ember-mocha` and `ember-test-utils` stuff
