@@ -11,8 +11,7 @@
     "lint": "npm run lint-js",
     "lint-js": "eslint addon app blueprints config tests *.js",
     "start": "ember server",
-    "test": "npm run lint && ember test",
-    "postinstall": "rm -rf node_modules/ember-cli/node_modules/testem"
+    "test": "npm run lint && ember test"
   },
   "repository": {
     "type": "git",
@@ -52,8 +51,7 @@
     "ember-welcome-page": "^1.0.3",
     "eslint": "^3.0.0",
     "eslint-config-frost-standard": "^5.0.0",
-    "loader.js": "^4.0.10",
-    "testem": "job13er/testem#ember-frost-test"
+    "loader.js": "^4.0.10"
   },
   "keywords": [
     "ember-addon",
