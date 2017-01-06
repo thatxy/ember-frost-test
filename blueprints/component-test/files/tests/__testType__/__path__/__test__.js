@@ -3,9 +3,9 @@
  */
 
 import {expect} from 'chai'
-<% if (testType === 'integration' ) { %>import hbs from 'htmlbars-inline-precompile'
-import {$hook} from 'ember-hook'
+<% if (testType === 'integration' ) { %>import {$hook} from 'ember-hook'
 import wait from 'ember-test-helpers/wait'
+import hbs from 'htmlbars-inline-precompile'
 import {afterEach, beforeEach, describe, it} from 'mocha'<% } else { %>
 import {afterEach, beforeEach, describe, it} from 'mocha'<% } %>
 import sinon from 'sinon'
