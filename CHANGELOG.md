@@ -1,3 +1,11 @@
+# 1.0.0
+### Breaking
+* **Swapped**  from `bower` versions of `sinon-chai` and `chai-jquery` to `npm` versions. Running the install blueprint for this addon will remove the bower deps, and add npm deps, as well as clean up `ember-cli-build.js` to undo what it previously added there. If you manually loaded `sinon-chai` and/or `chai-jquery` yourself in `ember-cli-build.js` you'll need to manually undo that. 
+
+### Non-breaking
+* **Updated** `eslint-config-frost-standard` and fixed new lint warnings
+
+
 # 0.2.1
 
  * **Removed** the `blueprint` hack to install a fork of `testem` and clear out the one under `node_modules/ember-cli/node_modules/testem` since [the fix has been released](https://github.com/testem/testem/releases/tag/v1.14.1)
