@@ -10,8 +10,9 @@
     "build": "ember build",
     "lint": "npm run lint-js",
     "lint-js": "eslint addon app blueprints config tests *.js",
+    "node-test": "mocha specs",
     "start": "ember server",
-    "test": "npm run lint && ember test"
+    "test": "npm run lint && npm run node-test && ember test"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,7 @@
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",
+    "chai": "^3.5.0",
     "ember-ajax": "^2.4.1",
     "ember-cli": "~2.8.0",
     "ember-cli-app-version": "^2.0.0",
@@ -51,7 +53,8 @@
     "ember-welcome-page": "^1.0.3",
     "eslint": "^3.0.0",
     "eslint-config-frost-standard": "^5.3.1",
-    "loader.js": "^4.0.10"
+    "loader.js": "^4.0.10",
+    "mocha": "^3.2.0"
   },
   "keywords": [
     "ember-addon",

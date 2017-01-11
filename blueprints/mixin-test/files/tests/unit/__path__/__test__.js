@@ -3,6 +3,7 @@
  */
 
 import {expect} from 'chai'
+import Ember from 'ember'
 import {afterEach, beforeEach, describe, it} from 'mocha'
 import sinon from 'sinon'
 
