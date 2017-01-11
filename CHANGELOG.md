@@ -1,3 +1,9 @@
+# 1.0.1
+
+* **Fixed** bug in the new blueprint test generators (all but `component-test` were broken
+* **Added** automated tests for generating all files and making sure they pass lint
+
+
 # 1.0.0
 ### Breaking
 * **Swapped**  from `bower` versions of `sinon-chai` and `chai-jquery` to `npm` versions. Running the install blueprint for this addon will remove the bower deps, and add npm deps, as well as clean up `ember-cli-build.js` to undo what it previously added there. If you manually loaded `sinon-chai` and/or `chai-jquery` yourself in `ember-cli-build.js` you'll need to manually undo that. 
