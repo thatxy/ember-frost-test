@@ -56,7 +56,6 @@ module.exports = {
    */
   locals (options) {
     const dasherizedModuleName = stringUtil.dasherize(options.entity.name)
-    const dasherizedProjectName = stringUtil.dasherize(options.project.name())
     let componentPathName = dasherizedModuleName
     const testType = options.testType || 'integration'
 
@@ -64,14 +63,11 @@ module.exports = {
       componentPathName = [options.path, dasherizedModuleName].join('/')
     }
 
-    const isAddon = this.project.isEmberCLIAddon()
-    let testHelpersPath = isAddon ? 'dummy/tests/helpers' : `${dasherizedProjectName}/tests/helpers`
-
     return {
       capitalizedTestType: stringUtil.capitalize(testType),
       componentPathName,
       path: getPathOption(options),
-      testHelpersPath,
+      testHelpersPath: utils.common.getTestHelpersPath(options),
       testType
     }
   },
