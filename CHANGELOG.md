@@ -6,7 +6,10 @@
 
 # 1.0.0
 ### Breaking
-* **Swapped**  from `bower` versions of `sinon-chai` and `chai-jquery` to `npm` versions. Running the install blueprint for this addon will remove the bower deps, and add npm deps, as well as clean up `ember-cli-build.js` to undo what it previously added there. If you manually loaded `sinon-chai` and/or `chai-jquery` yourself in `ember-cli-build.js` you'll need to manually undo that. 
+* **Swapped**  from `bower` versions of `sinon-chai` and `chai-jquery` to `npm` versions. Running the install
+blueprint for this addon will remove the bower deps, and add npm deps, as well as clean up `ember-cli-build.js`
+to undo what it previously added there. If you manually loaded `sinon-chai` and/or `chai-jquery` yourself in
+`ember-cli-build.js` you'll need to manually undo that.
 
 ### Non-breaking
 * **Updated** `eslint-config-frost-standard` and fixed new lint warnings
@@ -14,7 +17,8 @@
 
 # 0.2.1
 
- * **Removed** the `blueprint` hack to install a fork of `testem` and clear out the one under `node_modules/ember-cli/node_modules/testem` since [the fix has been released](https://github.com/testem/testem/releases/tag/v1.14.1)
+* **Removed** the `blueprint` hack to install a fork of `testem` and clear out the one under
+`node_modules/ember-cli/node_modules/testem` since [the fix has been released](https://github.com/testem/testem/releases/tag/v1.14.1)
 
 
 # 0.2.0
@@ -27,8 +31,10 @@
 * **Added** `mixin-test` blueprint for generating mixin tests
 * **Added** `model-test` blueprint for generating model tests
 * **Added** `route-test` blueprint for generating route tests
-* **Updated** `ember-frost-test` blueprint to install a bugfix branch of `testem` and make sure it's used by `ember-cli` to workaround [this bug](https://github.com/testem/testem/issues/1043) until the fix is merged/released. 
-* **Fixed** a bug in `component-test` where generating a test for an addon was using `addon-name/tests/helpers` instead of `dummy/tests/helpers` to pull in `ember-test-utils` helpers.
+* **Updated** `ember-frost-test` blueprint to install a bugfix branch of `testem` and make sure it's used by
+`ember-cli` to workaround [this bug](https://github.com/testem/testem/issues/1043) until the fix is merged/released.
+* **Fixed** a bug in `component-test` where generating a test for an addon was using `addon-name/tests/helpers`
+instead of `dummy/tests/helpers` to pull in `ember-test-utils` helpers.
 
 # 0.1.0
 * **Added** component-test blueprint generator
