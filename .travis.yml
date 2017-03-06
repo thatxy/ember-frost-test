@@ -1,34 +1,11 @@
 sudo: required
 dist: trusty
 language: node_js
+
 node_js:
-- '6.9'
+- '6.9.1'
 - 'stable'
-branches:
-  except:
-  - "/^v[0-9\\.]+/"
-before_install:
-- npm config set spin false
-- npm install -g coveralls pr-bumper
-- pr-bumper check
-install:
-- npm install
-- bower install
-before_script:
-- export CHROME_BIN=/usr/bin/google-chrome
-- "export DISPLAY=:99.0"
-- "sh -e /etc/init.d/xvfb start"
-- sleep 3 # give xvfb some time to start
-- sudo apt-get update
-- sudo apt-get install -y libappindicator1 fonts-liberation
-- wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-- sudo dpkg -i google-chrome*.deb
-script:
-- npm run lint
-# no tests to run yet
-# - ember try:one $EMBER_TRY_SCENARIO --- ember test
-after_success:
-- .travis/publish-coverage.sh
+
 addons:
   apt:
     sources:
@@ -37,6 +14,11 @@ addons:
     packages:
     - google-chrome-stable
     - g++-4.8
+
+cache:
+  directories:
+  - node_modules
+
 env:
   matrix:
   - EMBER_TRY_SCENARIO=ember-2-3
@@ -47,8 +29,30 @@ env:
     - secure: cPXj+ImjbOqnD/mCc/3wDtdE+VvYsE533pRRSOnzOUgjV4rNoHXOBxcxR4UGIY0QhFBuLK4gLIxtLfMcWa9TWtAz66XG4jAYkHlte5vUuSmG+UpO0yb3yqRbH3y/sRYG6h3Tx+hDMZmR7HGRSVwLPjVVnNyUtNd7dPHGJt4EizjmM6RGieVlRZ5E6LWZJTynze6mAusEzbErf3rJfZUfRo6++B/5jWXdZS31/7fpbf8pdr/awdtRp6ZQnfesIu1uCSiKheifD7hUqxxE3iBaDGfl9w6d9IrwZGoEkXars6nLJBH9UBqo0Ol2noATAFXpYWm3tf7H9AVdadqHp5lRRb1FTJhiIWsnULmNjRFBYqzF3Hyzi86cziRjQH1Y4S5HlYAiQn2UMOsuOciGPpwxeWII4riYqx+amhuGUarSW1bVtBUi1k2+lbBVhXPf6Z7gu2HZqnQGLnJEozGVGo89wYwz1mTnGUfpU6NSsHvzzV8sPurMzLpvvf30P5HxpCN6UEHiKijaf9VAdqZ4k+hLx3BaVvDl4OIEJUCFrTjt5Ku4XhJl+ur4z1eGN0XaxPFjwsCOLl8XhSdRtlxeslb3kVCbWwvhYZnVE16feTnm88lJhE4wboVm5+kgkziS95oxB+KxLWYecDc1J/TWU1SUtFRoiVLjYEpncfKcc05d8FM=
 matrix:
   fast_finish: true
-before_deploy:
-- pr-bumper bump
+
+before_install:
+- npm config set spin false
+- npm install -g coveralls pr-bumper@^1.0.0
+- $(npm root -g)/pr-bumper/.travis/maybe-check-scope.sh
+
+install:
+- $(npm root -g)/pr-bumper/.travis/maybe-install.sh
+
+before_script:
+- "export DISPLAY=:99.0"
+- "sh -e /etc/init.d/xvfb start"
+- sleep 3 # give xvfb some time to start
+
+script:
+- npm run lint
+# no tests to run yet
+# - $(npm root -g)/pr-bumper/.travis/maybe-test.sh
+- .travis/maybe-bump-version.sh
+
+after_success:
+- .travis/maybe-publish-coverage.sh
+- .travis/maybe-publish-gh-pages.sh
+
 deploy:
   provider: npm
   email: npm.ciena@gmail.com
@@ -56,12 +60,11 @@ deploy:
   api_key:
     secure: Rx4v1RdoKJPRd4c38/nufE0NCqniazMggiOB5W/MCVdEwmVN4vO/9k3DZ+DcDbNMXnEboMcmGjC1TLv2ff19bd+3YwHXMZ0MNAe/3NQBUATYpUnyKbxfMXLMsRZpa32yzY3aUdlKFWDTBsUFaYToufWuiuU3ToDfUFVvd8Bm5V2Q2bu8vihLdSYJ1k/bxl+11N8IB+RQxJA1LcuMtLIj7fzyy4dd7nFRzJUp1WRpPXOr2NyQMOu2zPVbsOO0BIY/2veNbWn6T2ZE1OaXh5QboeMvUFECutxuhuc6Eq0tAdTc7Pu0Cnx3iS4vVtcBMXtr8pGXQF1/1VOzxAM39EPe0iHv394Xe4KBADDpA0J8Y9eoHJm2C/neMl96lJGAyEGWb4w83gaX/ygEwk0PVGPyGyk1funBWu2DcJa1CFxXuJuOqitk90HvXACejEuTF8VqRDQHHKUBRMOBa3LBQfi2ucotndgVHuesY9eqqfX2E1aPduodcX/DMV8MYNShjc07KMC/z5iKMGZvEp8Yj5par5/aNtk/UftvFiaWU9Ng8V4/HgEaW9gdHEX+lryMllhOhL9PAY7Y79pr58wMUmyvYretTE6p2PyZ3IcRhafQjDcdGd7+OVmX4yTbO/6qxdT/Uz9FPwlIXyM1qRYdL4Jy0z/oRLXxLOW1gTicQ0IqOS4=
   on:
-    branch: master
+    all_branches: true
     condition: "$EMBER_TRY_SCENARIO = 'default'"
-    node: 'stable'
+    node: '6.9.1'
     tags: true
-after_deploy:
-- .travis/publish-gh-pages.sh
+
 notifications:
   slack:
     secure: aDsm3XhRh8N6cRaKHh4F4wxD/EyLnAdiozX8mJExkbvcJ0PI0Nfe5TNP6RxmS3bDilcl7lzSkZ++/ggQv0n94jpT9wxQW7+eqDf6tkl6dQlSH9RlPsiQMcCUfRAIp6UxBwxPACNTbs5RZbahJM2p5MFzvsLXl4cYB9MtB4j2APLgKbE0Mq2TT1LY/EA67KlAzIYPvjowGItyDVxsCFdYFMB+2s0yY2p6miMqT5YI1CuRQd/ixWUerMXm2vO3WZebcZROsxmCQrn2H76s7fnEp6ZoaaBIYkxtEPYF/NGzyoWSRtdfuW5Gd5l56iAXpewNUGAXN1lhIhQ5gHqd9X6b4mGuQ4IE1JZyZS0JJczhiUg+aGnlIP/eqC83/6kcHoujXMTSokvHKHtXsbMh0+f/izYc1t/KlYYNcTtf96yi+gC/r+/q17NqjXzuf1LQvDytStRnXkPg3M64tbU/c5vnKYToLOJGhYjOLzTx7/cNRZE9iORjkIFaVhSFnX6nc0mUc0wGaTi4B2r8QOr1ErF84OkkroiZ9jiaRIvdtuVOh3mK2iR0aQMv2FlmojtGdSFWXQdxK+MpKT0lzqIFkDdLCN8JlZKocwXhLbnpfILtdq5QJkSZbengmV/vFflgU660wdG7x77k9nRytii+GYWm3W0t4/QeHawLK9w71x9eAFs=
