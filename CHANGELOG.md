@@ -1,3 +1,7 @@
+# 1.0.3 (2017-05-10)
+* **Updated** the secure auth tokens in `.travis.yml`
+
+
 # 1.0.2
 * **Updated** to use latest pr-bumper which supports being able to set a PR to `none` when publishing a new version is not desired.
 
