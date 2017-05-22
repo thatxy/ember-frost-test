@@ -67,7 +67,6 @@ module.exports = {
       capitalizedTestType: stringUtil.capitalize(testType),
       componentPathName,
       path: getPathOption(options),
-      testHelpersPath: utils.common.getTestHelpersPath(options),
       testType
     }
   },

@@ -5,12 +5,12 @@
 import {expect} from 'chai'
 <% if (testType === 'integration' ) { %>import {$hook} from 'ember-hook'
 import wait from 'ember-test-helpers/wait'
+import {<%= testType %>} from 'ember-test-utils/test-support/setup-component-test'
 import hbs from 'htmlbars-inline-precompile'
 import {afterEach, beforeEach, describe, it} from 'mocha'<% } else { %>
+import {<%= testType %>} from 'ember-test-utils/test-support/setup-component-test'
 import {afterEach, beforeEach, describe, it} from 'mocha'<% } %>
 import sinon from 'sinon'
-
-import {<%= testType %>} from '<%= testHelpersPath %>/ember-test-utils/setup-component-test'
 
 const test = <%= testType %>('<%= dasherizedModuleName %>')
 describe(test.label, function () {

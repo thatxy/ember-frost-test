@@ -5,26 +5,10 @@
 'use strict'
 
 const normalizeEntityName = require('ember-cli-normalize-entity-name')
-const stringUtil = require('ember-cli-string-utils')
 const validComponentName = require('ember-cli-valid-component-name')
 const path = require('path')
 
-function getTestHelpersPath (options) {
-  const dasherizedProjectName = stringUtil.dasherize(options.project.name())
-  const isAddon = options.project.isEmberCLIAddon()
-  return isAddon ? 'dummy/tests/helpers' : `${dasherizedProjectName}/tests/helpers`
-}
-
 module.exports = {
-  common: {
-    getTestHelpersPath,
-    locals (options) {
-      return {
-        testHelpersPath: getTestHelpersPath(options)
-      }
-    }
-  },
-
   component: {
     fileMapTokens: {
       /**
