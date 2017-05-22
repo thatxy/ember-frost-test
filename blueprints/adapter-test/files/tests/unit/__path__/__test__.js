@@ -3,10 +3,9 @@
  */
 
 import {expect} from 'chai'
+import {module} from 'ember-test-utils/test-support/setup-test'
 import {afterEach, beforeEach, describe, it} from 'mocha'
 import sinon from 'sinon'
-
-import {module} from '<%= testHelpersPath %>/ember-test-utils/setup-test'
 
 // To specify the other units that are required for this test:
 // const test = module('adapter:<%= dasherizedModuleName %>', ['model:foo'])
