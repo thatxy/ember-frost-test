@@ -1,3 +1,7 @@
+# 2.0.0 (2017-05-22)
+* **Updated** versions of ember-sinon, ember-hook, ember-test-utils and ember-mocha
+* **Updated** test blueprints with new path to ember-test-util helpers
+
 # 1.0.3 (2017-05-10)
 * **Updated** the secure auth tokens in `.travis.yml`
 
