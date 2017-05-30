@@ -1,3 +1,8 @@
+# 2.1.0 (2017-05-30)
+* **Removed** blueprints for generating tests, they are now provided by `ember-cli-frost-blueprints`
+* **Added** `ember-cli-frost-blueprints` to the `dependencies` so that the same blueprints are still available to consumers of this addon. 
+
+
 # 2.0.0 (2017-05-22)
 * **Updated** versions of ember-sinon, ember-hook, ember-test-utils and ember-mocha
 * **Updated** test blueprints with new path to ember-test-util helpers
