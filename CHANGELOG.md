@@ -1,3 +1,7 @@
+# 2.1.1 (2017-05-30)
+ * **Moved** `ember-cli-frost-blueprints` from `dependencies` in `package.json` to being installed as a blueprint. It turns out that [`ember-cli` cheats w.r.t. `ember-cli-legacy-blueprints`](https://github.com/ember-cli/ember-cli/blob/v2.8.0/lib/models/project.js#L347) and so we can't follow that pattern (of just making it an `npm` dep). 
+
+
 # 2.1.0 (2017-05-30)
 * **Removed** blueprints for generating tests, they are now provided by `ember-cli-frost-blueprints`
 * **Added** `ember-cli-frost-blueprints` to the `dependencies` so that the same blueprints are still available to consumers of this addon. 
