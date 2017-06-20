@@ -21,9 +21,8 @@ cache:
 
 env:
   matrix:
-  - EMBER_TRY_SCENARIO=ember-2-8
-  - EMBER_TRY_SCENARIO=default
-  - EMBER_TRY_SCENARIO=ember-release
+  - EMBER_TRY_SCENARIO=ember-lts-2.8
+  - EMBER_TRY_SCENARIO=ember-default
   global:
     - CXX=g++-4.8
     - secure: kYH/JOGqFh9DV8yyZG4ZpnwLFiVefXkdF2xaTv+fvUVDUAR05g/dLnOh1YLxmAyiFvBiKpNOOZdAxjSQ1ViGpMWf4MYUQplwxFEC4qbf4m2TP2AhTQxKHygtu5ldB8w6Cn4NjWTFWkQwXwHQLD93IQu3k6m5Cm2jHUKpSuMYdKhpPAYK7KjHdaH7FPlKKD2xnX4tH5LaVZfdYoeRiRsc76sJouqLAcw9777/LLAKpwAIdMhGh0QXCPAXyVKJjcRAUJpWh8S4ieDnp8A/cbAc2FONVxbJOMndLjNpGafwUS84PlzVz7293wOI0uOiGmOBpMryZln/zruQcmhxI1mZf8JBpJaMd6rct/BfexhoE4eI9ySW5cfvT06arRv63vlxqWosk+SDbvVRQTDYVQjbjsgb3JpkaeV1fgSWV1if9GOaPtO6ez439V24ap6/upm8wZpnu05MrCpA1V6NRI8oBrlOqwLr4RhzpwzD/MKtLr3tdE3zqiomV3oh+OanB5xJjL9wpIvyw77dUX+RY33s2pE1V+3ufrJvZ+QoGlGcHBHK8TF83YP0j+kDmum8n4/RagAgvjvtMdjGC44YpiBvGWES7xE39+jHYqFnsud7uIBONkLbsFYJSEAkS97aqoyD7T0OP/CWZ7UWz4/AOebcNB+YsLNVl7nZtOhNxBwADa4=
@@ -61,7 +60,7 @@ deploy:
     secure: hESCgu0K9VAnKaq87yUNxWaubcO2VrUfmkfBJ+IjBoZgtTBXgfncPqKHGbeEZ73X8hKEKCtJUfqJUhQiVV9l4Pb1I29wYFdKzGIfW76X0lCIiLDEqHSZrTxnmMp0uzkbZuzauAvF4Ye2dFm5VQL659RwMDnVsUOhhlW0csk9EZWQ2VC95FYT/wDXzGOvpkuV6IwcCLhXMFF7Lh57R3rUm71AIsYb4aRyzHb/5OGP6xmnhe56Z0tz7AQyxui9w2l8yhhWlZpXW9kt+RRCtIsJJjTcAGOfR/jXM5iBBOSA8cgADOr6ZHgej0wUE359SkOIepXx0GJKuHqOi9pYJZUp3CFjA0pgm4CetOCzUMe2Alw+hjRNoszGxxYPoQZE3FrNQ+hxXcdSYveRRUdRbAF8Ehf6AIZvoS+aZi1QCaOKgmGOH8KR66Heh1XhPLAs6HEnRkliqGp+5zjhbwVXzJWECSjrQVaaq1irqcv91Ij9UfCP44p5SrasgYE73Rpo9fuJ9BYcUFqHg89eDeI7uzh0+pgmSd33lD7hASTOvQht4Be4zwvfJIu/mIqoIvO9XiZMLalZ3yXlY+anVn6DeW3jU1l6VMXSsveL2RUffTPsUhoSvTj+bvv1eWk5Jf934xeNTfbqdymungd0pntsWr4ZPxfMgmV9YvmKdYoHuIgQxHY=
   on:
     all_branches: true
-    condition: "$EMBER_TRY_SCENARIO = 'default'"
+    condition: "$EMBER_TRY_SCENARIO = 'ember-default'"
     node: '6.9.1'
     tags: true
 
