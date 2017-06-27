@@ -1,3 +1,10 @@
+# 2.1.2 (2017-06-27)
+* **Updated** the build scripts to publish under `ember-default`
+Listing changes that were not picked up from previous PR: https://github.com/ciena-frost/ember-frost-test/pull/33
+* **Updated** to Ember CLI 2.12.3 and Ember 2.12.x
+* **Updated** ember-try config matrix with Ember LTS 2.8
+* **Updated** travis.yml build matrix to run Ember LTS 2.8 and default (Ember LTS 2.12) 
+
 # 2.1.1 (2017-05-30)
  * **Moved** `ember-cli-frost-blueprints` from `dependencies` in `package.json` to being installed as a blueprint. It turns out that [`ember-cli` cheats w.r.t. `ember-cli-legacy-blueprints`](https://github.com/ember-cli/ember-cli/blob/v2.8.0/lib/models/project.js#L347) and so we can't follow that pattern (of just making it an `npm` dep). 
 
