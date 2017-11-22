@@ -1,6 +1,6 @@
 {
   "name": "ember-frost-test",
-  "version": "2.1.2",
+  "version": "3.0.0",
   "description": "The place for all the frosty testing things",
   "directories": {
     "doc": "doc",
