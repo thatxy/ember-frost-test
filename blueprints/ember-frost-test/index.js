@@ -27,7 +27,10 @@ module.exports = {
         {name: 'ember-hook', target: '1.4.2'},
         {name: 'ember-sinon', target: '^0.7.0'},
         {name: 'ember-test-utils', target: '^8.0.0'}
-      ]
+      ],
+      blueprintOptions: {
+        saveExact: true
+      }
     }
 
     const packagesToAdd = [
