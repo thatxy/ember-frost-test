@@ -17,7 +17,7 @@ module.exports = {
     const packageNameStr = packagesToAdd.map(pkg => pkg.name).join(' ')
     this.ui.writeLine(chalk.green('Installing packages') + ` ${packageNameStr}`)
     const pkgInstallStr = packagesToAdd.map(pkg => `${pkg.name}@${pkg.target}`).join(' ')
-    return exec(`npm install --save-exact ${pkgInstallStr}`)
+    return exec(`npm install --save-dev ${pkgInstallStr}`)
   },
 
   afterInstall: function () {
