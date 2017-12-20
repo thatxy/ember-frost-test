@@ -1,25 +1,7 @@
 /**
  * Install blueprint for ember-frost-test addon
  */
-
-const Promise = require('bluebird')
-const chalk = require('chalk')
-const cpExec = require('child_process').exec
-
-const exec = Promise.promisify(cpExec)
-
 module.exports = {
-  /*
-   * No idea why, but the default addPackagesToProject is installing the packages, but not updating
-   * package.json, so this is a temporary fix for that.
-   */
-  addPackagesToProject: function (packagesToAdd) {
-    const packageNameStr = packagesToAdd.map(pkg => pkg.name).join(' ')
-    this.ui.writeLine(chalk.green('Installing packages') + ` ${packageNameStr}`)
-    const pkgInstallStr = packagesToAdd.map(pkg => `${pkg.name}@${pkg.target}`).join(' ')
-    return exec(`npm install --save-dev ${pkgInstallStr}`)
-  },
-
   afterInstall: function () {
     const addonsToAdd = {
       packages: [
