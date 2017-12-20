@@ -21,7 +21,6 @@ cache:
 
 env:
   matrix:
-  - EMBER_TRY_SCENARIO=ember-lts-2.8
   - EMBER_TRY_SCENARIO=ember-default
   global:
     - CXX=g++-4.8
@@ -31,7 +30,7 @@ matrix:
 
 before_install:
 - npm config set spin false
-- npm install -g coveralls pr-bumper@^1.0.0
+- npm install -g pr-bumper@^1.0.0
 - $(npm root -g)/pr-bumper/.travis/maybe-check-scope.sh
 
 install:
@@ -44,13 +43,7 @@ before_script:
 
 script:
 - npm run lint
-# no tests to run yet
-# - $(npm root -g)/pr-bumper/.travis/maybe-test.sh
 - .travis/maybe-bump-version.sh
-
-after_success:
-- .travis/maybe-publish-coverage.sh
-- .travis/maybe-publish-gh-pages.sh
 
 deploy:
   provider: npm
