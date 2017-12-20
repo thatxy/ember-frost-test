@@ -13,13 +13,17 @@ ember install ember-frost-test
 ## Testing Tools
 We are using the following tools:
 
-* [ember-cli-mocha](https://github.com/ember-cli/ember-cli-mocha) - This is our testing framework.
-It also includes, chaijs our assertion library.
+* [ember-cli-mocha](https://github.com/ember-cli/ember-cli-mocha) - This installs the [Mocha](http://mochajs.org)
+ testing framework.
+* [ember-cli-chai](https://github.com/ember-cli/ember-cli-chai) - This install the [Chai](http://chaijs.com)
+ assertion library.
 * [ember-hook](https://github.com/Ticketfly/ember-hook) - This is a tool we use to create a separation between the
 DOM and our items under test.
 * [ember-sinon](https://github.com/csantero/ember-sinon) - This is our method spying/stubbing/mocking tool.
 * [ember-test-utils](https://github.com/ciena-blueplanet/ember-test-utils) - These are our test helpers that can be
 used to help test frost components.
+* [chai-jquery](https://github.com/chaijs/chai-jquery) - This is a chai extention that provides assertions for jQuery.
+* [sinon-chai](http://chaijs.com/plugins/sinon-chai/) - This is a chai extention that provides assertions for sinon.js.
 
 ## Testing Conventions
 
@@ -69,7 +73,7 @@ describe('Computed Properties', function () {
 })
 ```
 
-##### Defining a use-case   
+##### Defining a use-case
 The second, more common use of a nested `describe` is to describe/define a specific use-case, a state of the system or
 an action being performed. The label for these `describe` blocks will often start with "when".
 These types of `describe` blocks should always include a `beforeEach` which actually sets up the described state of
