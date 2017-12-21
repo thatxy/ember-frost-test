@@ -20,8 +20,8 @@ We are using the following tools:
 * [ember-hook](https://github.com/Ticketfly/ember-hook) - This is a tool we use to create a separation between the
 DOM and our items under test.
 * [ember-sinon](https://github.com/csantero/ember-sinon) - This is our method spying/stubbing/mocking tool.
-* [ember-test-utils](https://github.com/ciena-blueplanet/ember-test-utils) - These are our test helpers that can be
-used to help test frost components.
+* [ember-test-utils](https://github.com/ciena-blueplanet/ember-test-utils) - This provides our linting as well as
+ test helpers that can be used to help test frost components.
 * [chai-jquery](https://github.com/chaijs/chai-jquery) - This is a chai extention that provides assertions for jQuery.
 * [sinon-chai](http://chaijs.com/plugins/sinon-chai/) - This is a chai extention that provides assertions for sinon.js.
 
