@@ -1,3 +1,22 @@
+# 3.1.0 (2017-12-21)
+* **Updated** travis CI configuration to remove testing since there are no tests to run
+* **Removed** travis scripts that are no longer needed since we are not running test in CI
+* **Updated** blueprints to install testing packages at the versions we desire
+* **Added** `test-helper.js` blueprint file since we are no longer running the `ember-cli-mocha` blueprints that would have updated that file
+* **Updated** the addPackagesToProject method in the blueprints to respect the `save-exact` npm flag
+* **Updated** `README.md` to list all testing tools that this add-on installs via blueprints
+* **Updated** version of `ember-ajax` to `^2.5.6`
+* **Removed** unused `ember-cli-release` package
+* **Removed** unused `ember-cli-sri` package
+* **Removed** unused `ember-sinon` package
+* **Removed** unused `ember-hook` package
+* **Removed** unused `ember-cli-mocha` package since no tests in this addon
+* **Removed** unused `ember-cli-chai` package since no tests in the addon
+* **Added** `NOTES.md` file explaining the behavior/reason for implementation of this addon
+* **Updated** version of `ember-test-utils` to `^8.0.0`
+* **Updated** version of `ember-cli-htmlbars-inline-precompile` to `0.3.12`
+
+
 # 3.0.0 (2017-11-22)
 * **Updated** to version 7 of `ember-test-utils`
 * **Updated** to version ^1.4.2 of `ember-hook`
