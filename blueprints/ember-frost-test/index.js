@@ -40,14 +40,15 @@ module.exports = {
       {name: 'chai-jquery', target: '^2.0.0'}
     ]
 
-    return this.addPackagesToProject(packagesToAdd).catch((error) => {
-      this.ui.writeLine(chalk.red(error))
-      this.ui.writeLine('\n')
-      this.ui.writeLine(chalk.red('After determining which package failed, you will need to rerun this generator'))
-      this.ui.writeLine('\n')
-    }).then(() => {
-      return this.removePackageFromProject('ember-cli-qunit')
-    })
+    return this.removePackageFromProject('ember-cli-qunit')
+      .then(() => {
+        return this.addPackagesToProject(packagesToAdd).catch((error) => {
+          this.ui.writeLine(chalk.red(error))
+          this.ui.writeLine('\n')
+          this.ui.writeLine(chalk.red('After determining which package failed, you will need to rerun this generator'))
+          this.ui.writeLine('\n')
+        })
+      })
   },
 
   normalizeEntityName: function () {
