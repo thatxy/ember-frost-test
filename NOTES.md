@@ -1,4 +1,5 @@
-This addon provides consistent testing dependencies for frost projects via the blueprint's addPackageToProject method of this project. This was done so that the specific versions of each package being installed could be controlled.
+This addon provides consistent testing dependencies for frost projects via the blueprint's addPackageToProject method
+ of this project. This was done so that the specific versions of each package being installed could be controlled.
 
 In doing so, packages and generators that were previously provided via their own blueprints have been migrated to this
  addon. The generators have been migrated to run as blueprint generators for this repo such as the removal of
