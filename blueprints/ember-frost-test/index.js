@@ -15,8 +15,8 @@ module.exports = {
     }
 
     const packagesToAdd = [
-      {name: 'ember-cli-mocha', target: '0.14.4'},
-      {name: 'ember-cli-chai', target: '0.4.3'},
+      {name: 'ember-cli-mocha', target: '0.14.4', 'save-exact': true},
+      {name: 'ember-cli-chai', target: '0.4.3', 'save-exact': true},
       {name: 'sinon-chai', target: '^2.14.0'},
       {name: 'chai-jquery', target: '^2.0.0'}
     ]
