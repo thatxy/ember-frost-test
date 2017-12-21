@@ -45,6 +45,8 @@ module.exports = {
       this.ui.writeLine('\n')
       this.ui.writeLine(chalk.red('After determining which package failed, you will need to rerun this generator'))
       this.ui.writeLine('\n')
+    }).then(() => {
+      return this.removePackageFromProject('ember-cli-qunit')
     })
   },
 
