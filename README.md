@@ -15,15 +15,16 @@ We are using the following tools:
 
 * [ember-cli-mocha](https://github.com/ember-cli/ember-cli-mocha) - This installs the [Mocha](http://mochajs.org)
  testing framework.
-* [ember-cli-chai](https://github.com/ember-cli/ember-cli-chai) - This install the [Chai](http://chaijs.com)
+* [ember-cli-chai](https://github.com/ember-cli/ember-cli-chai) - This installs the [Chai](http://chaijs.com)
  assertion library.
 * [ember-hook](https://github.com/Ticketfly/ember-hook) - This is a tool we use to create a separation between the
 DOM and our items under test.
-* [ember-sinon](https://github.com/csantero/ember-sinon) - This is our method spying/stubbing/mocking tool.
+* [ember-sinon](https://github.com/csantero/ember-sinon) - This installs [Sinon](http://sinonjs.org) our method
+ spying/stubbing/mocking tool.
 * [ember-test-utils](https://github.com/ciena-blueplanet/ember-test-utils) - This provides our linting as well as
  test helpers that can be used to help test frost components.
-* [chai-jquery](https://github.com/chaijs/chai-jquery) - This is a chai extention that provides assertions for jQuery.
-* [sinon-chai](http://chaijs.com/plugins/sinon-chai/) - This is a chai extention that provides assertions for sinon.js.
+* [chai-jquery](https://github.com/chaijs/chai-jquery) - This is a chai extension that provides assertions for jQuery.
+* [sinon-chai](http://chaijs.com/plugins/sinon-chai/) - This is a chai extension that provides assertions for sinon.js.
 
 ## Testing Conventions
 
