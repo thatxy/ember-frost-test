@@ -41,9 +41,10 @@ module.exports = {
     ]
 
     return this.addPackagesToProject(packagesToAdd).catch((error) => {
-      this.ui.writeLine(error)
-      this.ui.writeLine('\n\n')
-      this.ui.writeLine(chalk.red('Error: Installing package'))
+      this.ui.writeLine(chalk.red(error))
+      this.ui.writeLine('\n')
+      this.ui.writeLine(chalk.red('After determining which package failed, you will need to rerun this generator'))
+      this.ui.writeLine('\n')
     })
   },
 
