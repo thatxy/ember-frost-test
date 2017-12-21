@@ -56,6 +56,7 @@
     "testing"
   ],
   "dependencies": {
+    "bluebird": "^3.4.7",
     "ember-cli-babel": "^5.1.7"
   },
   "ember-addon": {
