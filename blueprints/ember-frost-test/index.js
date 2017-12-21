@@ -40,8 +40,9 @@ module.exports = {
       {name: 'chai-jquery', target: '^2.0.0'}
     ]
 
-    return this.addPackagesToProject(packagesToAdd).catch(() => {
-      this.ui.writeLine()
+    return this.addPackagesToProject(packagesToAdd).catch((error) => {
+      this.ui.writeLine(error)
+      this.ui.writeLine('\n\n')
       this.ui.writeLine(chalk.red('Error: Installing package'))
     })
   },
