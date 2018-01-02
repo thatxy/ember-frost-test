@@ -1,3 +1,6 @@
+# 4.0.0 (2018-01-02)
+* Add `chalk@^2.3.0` as **dependency** (was missed in #40)
+
 # 3.1.0 (2017-12-21)
 * **Updated** travis CI configuration to remove testing since there are no tests to run
 * **Removed** travis scripts that are no longer needed since we are not running test in CI
