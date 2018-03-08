@@ -1,3 +1,14 @@
+# 4.0.1 (2018-03-08)
+* **Updated** pull request template
+* **Added** issue template
+* **Updated** to `pr-bumper` version `3`
+* **Updated** to node 8
+* **Added** slack integration
+* **Updated** `ember-test-utils` to `^8.1.1`
+* **Updated** `ember-test-utils` to `^8.1.1` in blueprint
+* **Updated** `ember-cli-frost-blueprints` to `^5.0.2`
+* **Added** `package-lock.json` file
+
 # 4.0.0 (2018-01-02)
 * Add `chalk@^2.3.0` as **dependency** (was missed in #40)
 
