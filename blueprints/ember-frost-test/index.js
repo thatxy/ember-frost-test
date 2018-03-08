@@ -35,7 +35,7 @@ module.exports = {
       {name: 'ember-cli-chai', target: '0.4.3', 'saveExact': true},
       {name: 'ember-hook', target: '1.4.2', 'saveExact': true},
       {name: 'ember-sinon', target: '^0.7.0'},
-      {name: 'ember-test-utils', target: '^8.0.0'},
+      {name: 'ember-test-utils', target: '^8.1.1'},
       {name: 'sinon-chai', target: '^2.14.0'},
       {name: 'chai-jquery', target: '^2.0.0'}
     ]
